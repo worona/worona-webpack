@@ -1,0 +1,45 @@
+{
+  "name": "webpack-cordova",
+  "version": "1.0.0",
+  "description": "",
+  "main": "",
+  "scripts": {
+    "start": "npm run clean; npm run cordova:prepare; npm run start:server",
+    "start:server": "node server.js",
+    "clean": "rimraf cordova/www/*; rimraf static/*",
+    "cordova": "npm run cordova:emulate:ios; npm run cordova:emulate:android; npm run cordova:run:ios; npm run cordova:run:android;",
+    "cordova:prepare": "cd cordova && cordova prepare",
+    "cordova:emulate:ios": "(cd cordova && cordova emulate ios)",
+    "cordova:emulate:android": "(cd cordova && cordova emulate android)",
+    "cordova:run:ios": "(cd cordova && cordova run ios)",
+    "cordova:run:android": "(cd cordova && cordova run android)"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.5.2",
+    "babel-loader": "^6.2.3",
+    "babel-plugin-transform-runtime": "^6.5.2",
+    "babel-preset-es2015": "^6.5.0",
+    "babel-preset-react": "^6.5.0",
+    "babel-preset-react-hmre": "^1.1.0",
+    "babel-preset-stage-1": "^6.5.0",
+    "css-loader": "^0.23.1",
+    "express": "^4.13.4",
+    "html-webpack-plugin": "^2.9.0",
+    "ngrok": "^0.1.99",
+    "react": "^0.14.7",
+    "rimraf": "^2.5.2",
+    "style-loader": "^0.13.0",
+    "webpack": "^1.12.14",
+    "webpack-dev-middleware": "^1.5.1",
+    "webpack-hot-middleware": "^2.7.1"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.5.0",
+    "babel-runtime": "^6.5.0",
+    "react": "^0.14.7",
+    "react-dom": "^0.14.7"
+  }
+}
