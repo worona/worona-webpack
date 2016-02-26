@@ -679,4 +679,4 @@
       using.apply(context, main.split(/\s*,\s*/)).then(function() {});
     }
   }
-}(window, document));
+}(this, document));

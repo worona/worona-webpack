@@ -1,12 +1,12 @@
-import loadrunner from './loadrunner';
+import $script from 'scriptjs';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const theme = 'theme1';
+window.Worona = { themes: {}, extensions: {} };
 
-window.worona = { exports: {}};
+const theme = 'theme2';
 
-using(`/static/${theme}.js`, function() {
-  const Theme = worona.exports.Theme;
+$script(`/static/${theme}.js`, function() {
+  const Theme = Worona.themes[theme];
   ReactDOM.render(<Theme />, document.getElementById('root'));
 });
