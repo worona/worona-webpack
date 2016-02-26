@@ -1,13 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { MyComponent } from './component.jsx';
 import style from './component.css';
 
 export class Theme extends React.Component {
   render() {
-    return <div className={style.text}>Hello Theme 1</div>;
+    return <MyComponent />;
   }
 }
 
-Worona.themes.theme1 = Theme;
+worona.exports = { Theme };
 
 console.log('loading theme1');
