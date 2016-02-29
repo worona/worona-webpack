@@ -9,27 +9,40 @@ module.exports = function(options) {
     entry: {
       app: [
         hotMiddlewareScript,
-        path.join(__dirname, 'src', 'app', 'index.js'),
+        path.join(__dirname, 'worona', 'entries', 'app', 'index.js'),
       ],
-      theme1: [
+      dashboard: [
         hotMiddlewareScript,
-        path.join(__dirname, 'themes', 'theme1', 'index.js'),
+        path.join(__dirname, 'worona', 'entries', 'dashboard', 'index.js'),
       ],
-      theme2: [
+      'theme1.app': [
         hotMiddlewareScript,
-        path.join(__dirname, 'themes', 'theme2', 'index.js'),
+        path.join(__dirname, 'themes', 'theme1', 'app.js'),
+      ],
+      'theme1.dashboard': [
+        hotMiddlewareScript,
+        path.join(__dirname, 'themes', 'theme1', 'dashboard.js'),
+      ],
+      'theme2.app': [
+        hotMiddlewareScript,
+        path.join(__dirname, 'themes', 'theme2', 'app.js'),
+      ],
+      'theme2.dashboard': [
+        hotMiddlewareScript,
+        path.join(__dirname, 'themes', 'theme2', 'dashboard.js'),
       ],
     },
     output: {
-      path: path.join(__dirname, 'static'),
+      path: path.join(__dirname, 'dist'),
       filename: '[name].js',
-      publicPath: options.publicPath + '/static',
+      publicPath: options.publicPath + '/dist',
     },
     resolve: {
       modulesDirectories: [
         'node_modules',
         'extensions',
         'themes',
+        'worona',
       ],
       extensions: ['', '.js', '.jsx', '.css'],
     },
@@ -39,7 +52,8 @@ module.exports = function(options) {
           test: /\.css$/,
           loader: 'style!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
           include: [
-            path.join(__dirname, 'src'),
+            path.join(__dirname, 'worona', 'entries'),
+            path.join(__dirname, 'worona', 'worona'),
             path.join(__dirname, 'extensions'),
             path.join(__dirname, 'themes'),
           ],
@@ -49,7 +63,8 @@ module.exports = function(options) {
           test: /\.jsx?$/,
           loader: 'babel',
           include: [
-            path.join(__dirname, 'src'),
+            path.join(__dirname, 'worona', 'entries'),
+            path.join(__dirname, 'worona', 'worona'),
             path.join(__dirname, 'extensions'),
             path.join(__dirname, 'themes'),
           ],
@@ -67,14 +82,14 @@ module.exports = function(options) {
       new webpack.HotModuleReplacementPlugin(),
       new webpack.NoErrorsPlugin(),
       new webpack.optimize.CommonsChunkPlugin({
-        name: 'theme-commons',
-        chunks: ['app', 'theme1', 'theme2'],
+        name: options.chunksName,
+        chunks: options.commonChunks,
         minChunks: 2,
       }),
       new HtmlWebpackPlugin({
         filename: options.htmlOutput,
         template: options.template,
-        chunks: ['app', 'theme-commons',],
+        chunks: options.finalChunks,
       }),
     ],
   };

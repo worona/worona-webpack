@@ -5,14 +5,14 @@
   "main": "",
   "scripts": {
     "start": "npm run clean; npm run cordova:prepare; npm run start:server",
-    "start:server": "node server.js",
-    "clean": "rimraf cordova/www/*; rimraf static/*",
+    "start:server": "node dev-server.js",
+    "clean": "rimraf worona/cordova/www/*; rimraf dist/*",
     "cordova": "npm run cordova:emulate:ios; npm run cordova:emulate:android; npm run cordova:run:ios; npm run cordova:run:android;",
-    "cordova:prepare": "cd cordova && cordova prepare",
-    "cordova:emulate:ios": "(cd cordova && cordova emulate ios)",
-    "cordova:emulate:android": "(cd cordova && cordova emulate android)",
-    "cordova:run:ios": "(cd cordova && cordova run ios)",
-    "cordova:run:android": "(cd cordova && cordova run android)"
+    "cordova:prepare": "(cd worona && cd cordova && cordova prepare)",
+    "cordova:emulate:ios": "(cd worona && cd cordova && cordova emulate ios)",
+    "cordova:emulate:android": "(cd worona && cd cordova && cordova emulate android)",
+    "cordova:run:ios": "(cd worona && cd cordova && cordova run ios)",
+    "cordova:run:android": "(cd worona && cd cordova && cordova run android)"
   },
   "keywords": [],
   "author": "",
