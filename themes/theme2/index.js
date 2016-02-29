@@ -1,3 +1,4 @@
+import worona from 'worona';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import style from './component.css';
@@ -8,6 +9,6 @@ export class Theme extends React.Component {
   }
 }
 
-Worona.themes.theme2 = Theme;
+worona.themes.theme2 = Theme;
 
-console.log('loading theme2');
+console.log('loading theme2 for the first time');

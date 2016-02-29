@@ -1,12 +1,6 @@
-import $script from 'scriptjs';
+import worona from 'worona';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { App } from './App.jsx';
 
-window.Worona = { themes: {}, extensions: {} };
-
-const theme = 'theme2';
-
-$script(`/static/${theme}.js`, function() {
-  const Theme = Worona.themes[theme];
-  ReactDOM.render(<Theme />, document.getElementById('root'));
-});
+ReactDOM.render(<App />, document.getElementById('root'));
