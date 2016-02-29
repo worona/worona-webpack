@@ -3,9 +3,9 @@ npm-debug.log*
 .DS_Store
 
 # ignore built static files
-#static/*
+static/*
 
 # cordova ignores
-#cordova/www/*
+cordova/www/*
 cordova/plugins/*
 cordova/platforms/*
