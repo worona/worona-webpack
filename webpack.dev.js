@@ -1,4 +1,5 @@
 var path = require('path');
+var fs = require('fs');
 var webpack = require('webpack');
 var HtmlWebpackPlugin  = require('html-webpack-plugin');
 
@@ -17,11 +18,11 @@ module.exports = function(options) {
       ],
       'theme1.app': [
         hotMiddlewareScript,
-        path.join(__dirname, 'themes', 'theme1', 'app.js'),
+        path.join(__dirname, 'node_modules', 'worona-theme1', 'app.js'),
       ],
       'theme1.dashboard': [
         hotMiddlewareScript,
-        path.join(__dirname, 'themes', 'theme1', 'dashboard.js'),
+        path.join(__dirname, 'node_modules', 'worona-theme1', 'dashboard.js'),
       ],
       'theme2.app': [
         hotMiddlewareScript,
@@ -44,7 +45,11 @@ module.exports = function(options) {
         'themes',
         'worona',
       ],
+      fallback: [path.join(__dirname, 'node_modules')],
       extensions: ['', '.js', '.jsx', '.css'],
+    },
+    resolveLoader: {
+      fallback: [path.join(__dirname, 'node_modules')],
     },
     module: {
       loaders: [
@@ -56,8 +61,8 @@ module.exports = function(options) {
             path.join(__dirname, 'worona', 'worona'),
             path.join(__dirname, 'extensions'),
             path.join(__dirname, 'themes'),
+            fs.realpathSync(__dirname + '/node_modules/worona-theme1/'),
           ],
-          exclude: /(node_modules)/,
         },
         {
           test: /\.jsx?$/,
@@ -67,12 +72,12 @@ module.exports = function(options) {
             path.join(__dirname, 'worona', 'worona'),
             path.join(__dirname, 'extensions'),
             path.join(__dirname, 'themes'),
+            fs.realpathSync(__dirname + '/node_modules/worona-theme1/'),
           ],
-          exclude: /(node_modules)/,
           query: {
             cacheDirectory: true,
             presets: ['react-hmre'],
-            plugins: ['transform-runtime'],
+            // plugins: ['transform-runtime'],
           },
         },
       ]
